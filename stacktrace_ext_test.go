@@ -193,6 +193,10 @@ type dependency struct {
 // Downloads all dependencies for the current Go module and reports their
 // module paths and locations on disk.
 func downloadDependencies(t *testing.T) []dependency {
+	if deps, ok := vendoredDependencies(t); ok {
+		return deps
+	}
+
 	cmd := exec.Command("go", "mod", "download", "-json")
 
 	stdout, err := cmd.Output()
@@ -207,4 +211,37 @@ func downloadDependencies(t *testing.T) []dependency {
 	}
 
 	return deps
+}
+
+func vendoredDependencies(t *testing.T) ([]dependency, bool) {
+	manifestPath := filepath.Join("vendor", "modules.txt")
+	manifest, err := os.ReadFile(manifestPath)
+	if os.IsNotExist(err) {
+		return nil, false
+	}
+	require.NoError(t, err, "Failed to read vendored dependencies")
+
+	var deps []dependency
+	for _, line := range strings.Split(string(manifest), "\n") {
+		if !strings.HasPrefix(line, "# ") || strings.HasPrefix(line, "# explicit; ") {
+			continue
+		}
+
+		fields := strings.Fields(line)
+		if len(fields) < 2 {
+			continue
+		}
+
+		importPath := fields[1]
+		if strings.HasPrefix(importPath, "go.uber.org/zap") {
+			continue
+		}
+
+		deps = append(deps, dependency{
+			ImportPath: importPath,
+			Dir:        filepath.Join("vendor", filepath.FromSlash(importPath)),
+		})
+	}
+
+	return deps, true
 }
