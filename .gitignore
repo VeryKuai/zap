@@ -6,7 +6,8 @@
 # Folders
 _obj
 _test
-vendor
+.gocache
+.gomodcache
 
 # Architecture specific extensions/prefixes
 *.[568vq]

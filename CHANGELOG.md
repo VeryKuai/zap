@@ -225,8 +225,6 @@ Enhancements:
 * [#865][]: Improve alignment of fields of the Logger struct, reducing its
   size from 96 to 80 bytes.
 * [#881][]: Support `grpclog.LoggerV2` in zapgrpc.
-* [#903][]: Support URL-encoded POST requests to the AtomicLevel HTTP handler
-  with the `application/x-www-form-urlencoded` content type.
 * [#912][]: Support multi-field encoding with `zap.Inline`.
 * [#913][]: Speed up SugaredLogger for calls with a single string.
 * [#928][]: Add support for filtering by field name to `zaptest/observer`.
@@ -236,7 +234,6 @@ Thanks to @ash2k, @FMLS, @jimmystewpot, @Oncilla, @tsoslow, @tylitianrui, @withs
 [#865]: https://github.com/uber-go/zap/pull/865
 [#867]: https://github.com/uber-go/zap/pull/867
 [#881]: https://github.com/uber-go/zap/pull/881
-[#903]: https://github.com/uber-go/zap/pull/903
 [#912]: https://github.com/uber-go/zap/pull/912
 [#913]: https://github.com/uber-go/zap/pull/913
 [#928]: https://github.com/uber-go/zap/pull/928
