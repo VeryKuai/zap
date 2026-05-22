@@ -31,7 +31,7 @@ import (
 	"go.yaml.in/yaml/v3"
 
 	//revive:disable:dot-imports
-	. "go.uber.org/zap/zapcore"
+	. "github.com/VeryKuai/zap/zapcore"
 )
 
 var (

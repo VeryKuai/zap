@@ -26,9 +26,9 @@ import (
 	"time"
 
 	"go.uber.org/multierr"
-	"go.uber.org/zap"
-	"go.uber.org/zap/internal/ztest"
-	"go.uber.org/zap/zapcore"
+	"github.com/VeryKuai/zap"
+	"github.com/VeryKuai/zap/internal/ztest"
+	"github.com/VeryKuai/zap/zapcore"
 )
 
 var (

@@ -23,8 +23,8 @@ package zap
 import (
 	"sync/atomic"
 
-	"go.uber.org/zap/internal"
-	"go.uber.org/zap/zapcore"
+	"github.com/VeryKuai/zap/internal"
+	"github.com/VeryKuai/zap/zapcore"
 )
 
 const (
